@@ -41,51 +41,10 @@ namespace WatchDocks
                     string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                     JObject coin_json = JObject.Parse(json);
 
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) > 0)
-                    {
-                        frm.a4.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) < 0)
-                    {
-                        frm.a4.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.a4.ForeColor = Color.White;
-         
-                    }
-
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                    {
-                        frm.a5.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                    {
-                        frm.a5.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.a5.ForeColor = Color.White;
-                    }
-
-
                     frm.a1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                     frm.a2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                    frm.a3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
-                    frm.a4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) == 0)
-                    {
-                        frm.a4.Text = "0 won";
-                    }
-                    frm.a5.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) == 0)
-                    {
-                        frm.a5.Text = "0 %";
-                    }
-                    frm.a6.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
-                    frm.a7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                    frm.a8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
-                    frm.a9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
+                    frm.a3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
+                    //frm.a4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
 
                     return coin_json["data"]["date"].ToString();
                 }
@@ -102,50 +61,17 @@ namespace WatchDocks
                     string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                     JObject coin_json = JObject.Parse(json);
 
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) > 0)
-                    {
-                        frm.b4.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) < 0)
-                    {
-                        frm.b4.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.b4.ForeColor = Color.White;
-                        
-                    }
-
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                    {
-                        frm.b5.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                    {
-                        frm.b5.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.b5.ForeColor = Color.White;
-                    }
+                    
 
                     frm.b1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                     frm.b2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                    frm.b3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
-                    frm.b4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) == 0)
-                    {
-                        frm.b4.Text = "0 won";
-                    }
-                    frm.b5.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) == 0)
-                    {
-                        frm.b5.Text = "0 %";
-                    }
+                    frm.b3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
+                    //frm.b4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
+
                     frm.b6.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                     frm.b7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                    frm.b8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
-                    frm.b9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
+                    //frm.b8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
+                    //frm.b9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
 
                     //return coin_json["data"]["date"].ToString();
                 }
@@ -162,50 +88,16 @@ namespace WatchDocks
                     string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                     JObject coin_json = JObject.Parse(json);
 
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) > 0)
-                    {
-                        frm.c4.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) < 0)
-                    {
-                        frm.c4.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.c4.ForeColor = Color.White;
-                        frm.c4.Text = "0";
-                    }
-
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                    {
-                        frm.c5.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                    {
-                        frm.c5.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.c5.ForeColor = Color.White;
-                    }
 
                     frm.c1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                     frm.c2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                    frm.c3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
-                    frm.c4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) == 0)
-                    {
-                        frm.c4.Text = "0 won";
-                    }
-                    frm.c5.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) == 0)
-                    {
-                        frm.c5.Text = "0 %";
-                    }
+                    frm.c3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
+                    //frm.c4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
+
                     frm.c6.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                     frm.c7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                    frm.c8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
-                    frm.c9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
+                    //frm.c8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
+                    //frm.c9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
 
                     //return coin_json["data"]["date"].ToString();
                 }
@@ -223,49 +115,15 @@ namespace WatchDocks
                     string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                     JObject coin_json = JObject.Parse(json);
 
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) > 0)
-                    {
-                        frm.d4.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) < 0)
-                    {
-                        frm.d4.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.d4.ForeColor = Color.White;
-                    }
-
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                    {
-                        frm.d5.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                    {
-                        frm.d5.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.d5.ForeColor = Color.White;
-                    }
-
                     frm.d1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                     frm.d2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                    frm.d3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
-                    frm.d4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) == 0)
-                    {
-                        frm.d4.Text = "0 won";
-                    }
-                    frm.d5.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) == 0)
-                    {
-                        frm.d5.Text = "0 %";
-                    }
+                    frm.d3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
+                    //frm.d4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
+
                     frm.d6.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                     frm.d7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                    frm.d8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
-                    frm.d9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
+                    //frm.d8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
+                    //frm.d9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
 
                     // return coin_json["data"]["date"].ToString();
                 }
@@ -284,50 +142,17 @@ namespace WatchDocks
                     JObject coin_json = JObject.Parse(json);
 
 
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) > 0)
-                    {
-                        frm.e4.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) < 0)
-                    {
-                        frm.e4.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.e4.ForeColor = Color.White;
-                        frm.e4.Text = "0";
-                    }
-
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                    {
-                        frm.e5.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                    {
-                        frm.e5.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.e5.ForeColor = Color.White;
-                    }
+                   
 
                     frm.e1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                     frm.e2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                    frm.e3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
-                    frm.e4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) == 0)
-                    {
-                        frm.e4.Text = "0 won";
-                    }
-                    frm.e5.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) == 0)
-                    {
-                        frm.e5.Text = "0 %";
-                    }
+                    frm.e3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
+                    //frm.e4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
+
                     frm.e6.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                     frm.e7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                    frm.e8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
-                    frm.e9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
+                    //frm.e8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
+                    //frm.e9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
 
                     //return coin_json["data"]["date"].ToString();
                 }
@@ -345,50 +170,17 @@ namespace WatchDocks
                     string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                     JObject coin_json = JObject.Parse(json);
 
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())>0)
-                    {
-                        frm.f4.ForeColor = Color.Aqua;
-                    }
-                    else if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) < 0)
-                    {
-                        frm.f4.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.f4.ForeColor = Color.White;
-                        frm.f4.Text = "0";
-                    }
-
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                    {
-                        frm.f5.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                    {
-                        frm.f5.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.f5.ForeColor = Color.White;
-                    }
+                   
 
                     frm.f1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                     frm.f2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                    frm.f3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
-                    frm.f4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) == 0)
-                    {
-                        frm.f4.Text = "0 won";
-                    }
-                    frm.f5.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) == 0)
-                    {
-                        frm.f5.Text = "0 %";
-                    }
+                    frm.f3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
+                    //frm.f4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
+
                     frm.f6.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                     frm.f7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                    frm.f8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
-                    frm.f9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
+                    //frm.f8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
+                    //frm.f9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
 
                     //return coin_json["data"]["date"].ToString();
                 }
@@ -406,50 +198,17 @@ namespace WatchDocks
                     string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                     JObject coin_json = JObject.Parse(json);
 
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) > 0)
-                    {
-                        frm.g4.ForeColor = Color.Aqua;
-                    }
-                    else if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) < 0)
-                    {
-                        frm.g4.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.g4.ForeColor = Color.White;
-                        frm.g4.Text = "0";
-                    }
-
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                    {
-                        frm.g5.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                    {
-                        frm.g5.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.g5.ForeColor = Color.White;
-                    }
+                    
 
                     frm.g1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                     frm.g2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                    frm.g3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
-                    frm.g4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) == 0)
-                    {
-                        frm.g4.Text = "0 won";
-                    }
-                    frm.g5.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) == 0)
-                    {
-                        frm.g5.Text = "0 %";
-                    }
+                    frm.g3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
+                    //frm.g4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
+
                     frm.g6.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                     frm.g7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                    frm.g8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
-                    frm.g9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
+                    //frm.g8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
+                    //frm.g9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
 
                     //return coin_json["data"]["date"].ToString();
                 }
@@ -467,50 +226,16 @@ namespace WatchDocks
                     string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                     JObject coin_json = JObject.Parse(json);
 
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) > 0)
-                    {
-                        frm.h4.ForeColor = Color.Aqua;
-                    }
-                    else if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) < 0)
-                    {
-                        frm.h4.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.h4.ForeColor = Color.White;
-                        frm.h4.Text = "0";
-                    }
-
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                    {
-                        frm.h5.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                    {
-                        frm.h5.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.h5.ForeColor = Color.White;
-                    }
 
                     frm.h1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                     frm.h2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                    frm.h3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
-                    frm.h4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) == 0)
-                    {
-                        frm.h4.Text = "0 won";
-                    }
-                    frm.h5.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) == 0)
-                    {
-                        frm.h5.Text = "0 %";
-                    }
+                    //frm.h3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
+                    //frm.h4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
+                    
                     frm.h6.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                     frm.h7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                    frm.h8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
-                    frm.h9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
+                    //frm.h8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
+                    //frm.h9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
 
                     //return coin_json["data"]["date"].ToString();
                 }
@@ -716,50 +441,15 @@ namespace WatchDocks
                     string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                     JObject coin_json = JObject.Parse(json);
 
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) > 0)
-                    {
-                        frm.m4.ForeColor = Color.Aqua;
-                    }
-                    else if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) < 0)
-                    {
-                        frm.m4.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.m4.ForeColor = Color.White;
-                        frm.m4.Text = "0";
-                    }
-
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                    {
-                        frm.m5.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                    {
-                        frm.m5.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.m5.ForeColor = Color.White;
-                    }
-
                     frm.m1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                     frm.m2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                    frm.m3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
-                    frm.m4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) == 0)
-                    {
-                        frm.m4.Text = "0 won";
-                    }
-                    frm.m5.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) == 0)
-                    {
-                        frm.m5.Text = "0 %";
-                    }
+                    frm.m3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
+                    //frm.m4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
+
                     frm.m6.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                     frm.m7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                    frm.m8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
-                    frm.m9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
+                    //frm.m8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
+                    //frm.m9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
 
                     //return coin_json["data"]["date"].ToString();
                 }
@@ -777,50 +467,16 @@ namespace WatchDocks
                     string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                     JObject coin_json = JObject.Parse(json);
 
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) > 0)
-                    {
-                        frm.n4.ForeColor = Color.Aqua;
-                    }
-                    else if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) < 0)
-                    {
-                        frm.n4.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.n4.ForeColor = Color.White;
-                        frm.n4.Text = "0";
-                    }
-
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                    {
-                        frm.n5.ForeColor = Color.Turquoise;
-                    }
-                    else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                    {
-                        frm.n5.ForeColor = Color.Tomato;
-                    }
-                    else
-                    {
-                        frm.n5.ForeColor = Color.White;
-                    }
 
                     frm.n1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                     frm.n2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                    frm.n3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
-                    frm.n4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                    if (Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString()) == 0)
-                    {
-                        frm.n4.Text = "0 won";
-                    }
-                    frm.n5.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
-                    if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) == 0)
-                    {
-                        frm.n5.Text = "0 %";
-                    }
+                    frm.n3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
+                    //frm.n4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
+
                     frm.n6.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                     frm.n7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                    frm.n8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
-                    frm.n9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
+                    //.n8.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["buy_price"].ToString())) + " won";
+                    //frm.n9.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["sell_price"].ToString())) + " won";
 
                     //return coin_json["data"]["date"].ToString();
                 }

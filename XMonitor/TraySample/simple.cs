@@ -345,7 +345,7 @@ namespace Planet
                 string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                 JObject coin_json = JObject.Parse(json);
 
-                frm.N04.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
+                frm.N04.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
                 frm.N03.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                 frm.N02.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
 
@@ -364,7 +364,7 @@ namespace Planet
                 string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                 JObject coin_json = JObject.Parse(json);
 
-                frm.N04.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
+                frm.N04.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
                 frm.N03.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                 frm.N02.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
 
@@ -383,7 +383,7 @@ namespace Planet
                 string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                 JObject coin_json = JObject.Parse(json);
 
-                frm.N04.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
+                frm.N04.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
                 frm.N03.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                 frm.N02.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
 
@@ -403,7 +403,7 @@ namespace Planet
                 string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                 JObject coin_json = JObject.Parse(json);
 
-                frm.N04.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
+                frm.N04.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
                 frm.N03.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                 frm.N02.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
 
@@ -423,7 +423,7 @@ namespace Planet
                 string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                 JObject coin_json = JObject.Parse(json);
 
-                frm.N04.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
+                frm.N04.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
                 frm.N03.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                 frm.N02.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
 
@@ -443,7 +443,7 @@ namespace Planet
                 string json = wc.DownloadString("https://api.bithumb.com/public/ticker/" + coin_name);
                 JObject coin_json = JObject.Parse(json);
 
-                frm.N04.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
+                frm.N04.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
                 frm.N03.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                 frm.N02.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
 

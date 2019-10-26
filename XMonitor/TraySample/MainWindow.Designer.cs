@@ -1927,6 +1927,7 @@
             // 
             this.la09.AutoSize = true;
             this.la09.BackColor = System.Drawing.Color.Transparent;
+            this.la09.Enabled = false;
             this.la09.Font = new System.Drawing.Font("MS PGothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.la09.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.la09.Location = new System.Drawing.Point(25, 16);
@@ -1941,6 +1942,7 @@
             this.b8.BackColor = System.Drawing.Color.Transparent;
             this.b8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("b8.BackgroundImage")));
             this.b8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.b8.Enabled = false;
             this.b8.Location = new System.Drawing.Point(0, 0);
             this.b8.Name = "b8";
             this.b8.Size = new System.Drawing.Size(207, 46);

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExpertViewMode));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.label77 = new System.Windows.Forms.Label();
             this.n4 = new System.Windows.Forms.Label();
             this.n1 = new System.Windows.Forms.Label();
@@ -153,7 +154,6 @@
             this.panel14 = new System.Windows.Forms.Panel();
             this.label177 = new System.Windows.Forms.Label();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
-            this.label12 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -230,6 +230,19 @@
             this.panel1.Size = new System.Drawing.Size(1357, 522);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("MS PGothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(582, 417);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(171, 33);
+            this.label12.TabIndex = 65;
+            this.label12.Text = "X Monitor II";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label77
             // 
@@ -1773,19 +1786,6 @@
             this.metroButton1.UseSelectable = true;
             this.metroButton1.UseStyleColors = true;
             this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("MS PGothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(582, 417);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(171, 33);
-            this.label12.TabIndex = 65;
-            this.label12.Text = "X Monitor II";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // ExpertViewMode
             // 

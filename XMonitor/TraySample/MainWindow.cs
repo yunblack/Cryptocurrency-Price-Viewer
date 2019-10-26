@@ -656,12 +656,12 @@ namespace TraySample
 
                 frm.t1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                 frm.t2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                frm.t3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
+                frm.t3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString())+ Convert.ToDouble(coin_json["data"]["max_price"].ToString()))/2) + " won";
                 frm.t4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                 frm.t5.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";               
-                frm.t7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                frm.v1.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_1day"].ToString())) + " " + coin_name + " ";
-                frm.v2.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_7day"].ToString())) + " " + coin_name + " ";
+                //frm.t7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["fluctate_24H"].ToString())) + " won";
+                //frm.v1.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_1day"].ToString())) + " " + coin_name + " ";
+                //frm.v2.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_7day"].ToString())) + " " + coin_name + " ";
 
                 using (WebClient wc2 = new WebClient())
                 {
@@ -669,53 +669,14 @@ namespace TraySample
                     JObject jjson = JObject.Parse(json2);
                     frm.usd01.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " $";
                     frm.usd02.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " $";
-                    frm.usd03.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " $";
+                    frm.usd03.Text = String.Format("{0:#,###.##}", ((Convert.ToDouble(coin_json["data"]["min_price"].ToString())+ Convert.ToDouble(coin_json["data"]["max_price"].ToString()))/2) * Convert.ToDouble(jjson["KRWUSD"][0].ToString())) + " $";
                     frm.usd04.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " $";
                     frm.usd05.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " $";
-                    frm.usd06.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " $";
+                    //frm.usd06.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["fluctate_24H"].ToString())) + " $";
                     
                 }
-                frm.usd07.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
-                frm.t7_2.Text= coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
-
-
-                if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                {
-                    frm.t7_2.ForeColor = Color.Turquoise;
-                    frm.t7.ForeColor = Color.Turquoise;
-
-                    frm.usd06.ForeColor = Color.Turquoise;
-                    frm.usd07.ForeColor = Color.Turquoise;
-                    frm.t7.ForeColor = Color.Turquoise;
-
-                    frm.usd06.Text = "+ " + frm.usd06.Text;
-                    frm.usd07.Text = "+ " + frm.usd07.Text;
-
-                    frm.t7_2.Text = "+ " + frm.t7_2.Text;
-                    frm.t7.Text = "+ " + frm.t7.Text;
-                }
-                else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                {
-                    frm.t7_2.ForeColor = Color.Tomato;
-                    frm.t7.ForeColor = Color.Tomato;
-
-                    frm.usd06.ForeColor = Color.Tomato;
-                    frm.usd07.ForeColor = Color.Tomato;
-
-                    frm.usd06.Text = frm.usd06.Text;
-                    frm.usd07.Text = frm.usd07.Text;
-
-                    frm.t7_2.Text = frm.t7_2.Text;
-                    frm.t7.Text = frm.t7.Text;
-                }
-                else
-                {
-                    frm.usd06.ForeColor = Color.White;
-                    frm.usd07.ForeColor = Color.White;
-
-                    frm.t7_2.ForeColor = Color.White;
-                    frm.t7.ForeColor = Color.White;
-                }
+                //frm.usd07.Text = coin_json["data"]["fluctate_rate_24H"].ToString() + " %";
+                //frm.t7_2.Text= coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
 
                 return coin_json["data"]["date"].ToString();
             }
@@ -734,13 +695,12 @@ namespace TraySample
 
                 frm.t1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                 frm.t2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                frm.t3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
+                frm.t3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
                 frm.t4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                 frm.t5.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                frm.t7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                frm.v1.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_1day"].ToString())) + " " + coin_name + " ";
-                frm.v2.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_7day"].ToString())) + " " + coin_name + " ";
-                frm.t7_2.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
+                //frm.t7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["fluctate_24H"].ToString())) + " won";
+                //frm.v1.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_1day"].ToString())) + " " + coin_name + " ";
+                //frm.v2.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_7day"].ToString())) + " " + coin_name + " ";
 
                 using (WebClient wc2 = new WebClient())
                 {
@@ -748,50 +708,15 @@ namespace TraySample
                     JObject jjson = JObject.Parse(json2);
                     frm.usd01.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " $";
                     frm.usd02.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " $";
-                    frm.usd03.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " $";
+                    frm.usd03.Text = String.Format("{0:#,###.##}", ((Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) * Convert.ToDouble(jjson["KRWUSD"][0].ToString())) + " $";
                     frm.usd04.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " $";
                     frm.usd05.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " $";
-                    frm.usd06.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " $";
+                    //frm.usd06.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["fluctate_24H"].ToString())) + " $";
 
                 }
+                //frm.usd07.Text = coin_json["data"]["fluctate_rate_24H"].ToString() + " %";
+                //frm.t7_2.Text= coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
 
-                if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                {
-                    frm.t7_2.ForeColor = Color.Turquoise;
-                    frm.t7.ForeColor = Color.Turquoise;
-
-                    frm.usd06.ForeColor = Color.Turquoise;
-                    frm.usd07.ForeColor = Color.Turquoise;
-                    frm.t7.ForeColor = Color.Turquoise;
-
-                    frm.usd06.Text = "+ " + frm.usd06.Text;
-                    frm.usd07.Text = "+ " + frm.usd07.Text;
-
-                    frm.t7_2.Text = "+ " + frm.t7_2.Text;
-                    frm.t7.Text = "+ " + frm.t7.Text;
-                }
-                else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                {
-                    frm.t7_2.ForeColor = Color.Tomato;
-                    frm.t7.ForeColor = Color.Tomato;
-
-                    frm.usd06.ForeColor = Color.Tomato;
-                    frm.usd07.ForeColor = Color.Tomato;
-
-                    frm.usd06.Text = frm.usd06.Text;
-                    frm.usd07.Text = frm.usd07.Text;
-
-                    frm.t7_2.Text = frm.t7_2.Text;
-                    frm.t7.Text = frm.t7.Text;
-                }
-                else
-                {
-                    frm.usd06.ForeColor = Color.White;
-                    frm.usd07.ForeColor = Color.White;
-
-                    frm.t7_2.ForeColor = Color.White;
-                    frm.t7.ForeColor = Color.White;
-                }
                 return coin_json["data"]["date"].ToString();
             }
         }
@@ -809,13 +734,12 @@ namespace TraySample
 
                 frm.t1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                 frm.t2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                frm.t3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
+                frm.t3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
                 frm.t4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                 frm.t5.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                frm.t7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                frm.v1.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_1day"].ToString())) + " " + coin_name + " ";
-                frm.v2.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_7day"].ToString())) + " " + coin_name + " ";
-                frm.t7_2.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
+                //frm.t7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["fluctate_24H"].ToString())) + " won";
+                //frm.v1.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_1day"].ToString())) + " " + coin_name + " ";
+                //frm.v2.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_7day"].ToString())) + " " + coin_name + " ";
 
                 using (WebClient wc2 = new WebClient())
                 {
@@ -823,50 +747,15 @@ namespace TraySample
                     JObject jjson = JObject.Parse(json2);
                     frm.usd01.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " $";
                     frm.usd02.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " $";
-                    frm.usd03.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " $";
+                    frm.usd03.Text = String.Format("{0:#,###.##}", ((Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) * Convert.ToDouble(jjson["KRWUSD"][0].ToString())) + " $";
                     frm.usd04.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " $";
                     frm.usd05.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " $";
-                    frm.usd06.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " $";
+                    //frm.usd06.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["fluctate_24H"].ToString())) + " $";
 
                 }
+                //frm.usd07.Text = coin_json["data"]["fluctate_rate_24H"].ToString() + " %";
+                //frm.t7_2.Text= coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
 
-                if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                {
-                    frm.t7_2.ForeColor = Color.Turquoise;
-                    frm.t7.ForeColor = Color.Turquoise;
-
-                    frm.usd06.ForeColor = Color.Turquoise;
-                    frm.usd07.ForeColor = Color.Turquoise;
-                    frm.t7.ForeColor = Color.Turquoise;
-
-                    frm.usd06.Text = "+ " + frm.usd06.Text;
-                    frm.usd07.Text = "+ " + frm.usd07.Text;
-
-                    frm.t7_2.Text = "+ " + frm.t7_2.Text;
-                    frm.t7.Text = "+ " + frm.t7.Text;
-                }
-                else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                {
-                    frm.t7_2.ForeColor = Color.Tomato;
-                    frm.t7.ForeColor = Color.Tomato;
-
-                    frm.usd06.ForeColor = Color.Tomato;
-                    frm.usd07.ForeColor = Color.Tomato;
-
-                    frm.usd06.Text =frm.usd06.Text;
-                    frm.usd07.Text =frm.usd07.Text;
-
-                    frm.t7_2.Text = frm.t7_2.Text;
-                    frm.t7.Text = frm.t7.Text;
-                }
-                else
-                {
-                    frm.usd06.ForeColor = Color.White;
-                    frm.usd07.ForeColor = Color.White;
-
-                    frm.t7_2.ForeColor = Color.White;
-                    frm.t7.ForeColor = Color.White;
-                }
                 return coin_json["data"]["date"].ToString();
             }
         }
@@ -885,13 +774,12 @@ namespace TraySample
 
                 frm.t1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                 frm.t2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                frm.t3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
+                frm.t3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
                 frm.t4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                 frm.t5.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                frm.t7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                frm.v1.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_1day"].ToString())) + " " + coin_name + " ";
-                frm.v2.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_7day"].ToString())) + " " + coin_name + " ";
-                frm.t7_2.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
+                //frm.t7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["fluctate_24H"].ToString())) + " won";
+                //frm.v1.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_1day"].ToString())) + " " + coin_name + " ";
+                //frm.v2.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_7day"].ToString())) + " " + coin_name + " ";
 
                 using (WebClient wc2 = new WebClient())
                 {
@@ -899,50 +787,15 @@ namespace TraySample
                     JObject jjson = JObject.Parse(json2);
                     frm.usd01.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " $";
                     frm.usd02.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " $";
-                    frm.usd03.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " $";
+                    frm.usd03.Text = String.Format("{0:#,###.##}", ((Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) * Convert.ToDouble(jjson["KRWUSD"][0].ToString())) + " $";
                     frm.usd04.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " $";
                     frm.usd05.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " $";
-                    frm.usd06.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " $";
+                    //frm.usd06.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["fluctate_24H"].ToString())) + " $";
 
                 }
+                //frm.usd07.Text = coin_json["data"]["fluctate_rate_24H"].ToString() + " %";
+                //frm.t7_2.Text= coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
 
-                if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                {
-                    frm.t7_2.ForeColor = Color.Turquoise;
-                    frm.t7.ForeColor = Color.Turquoise;
-
-                    frm.usd06.ForeColor = Color.Turquoise;
-                    frm.usd07.ForeColor = Color.Turquoise;
-                    frm.t7.ForeColor = Color.Turquoise;
-
-                    frm.usd06.Text = "+ " + frm.usd06.Text;
-                    frm.usd07.Text = "+ " + frm.usd07.Text;
-
-                    frm.t7_2.Text = "+ " + frm.t7_2.Text;
-                    frm.t7.Text = "+ " + frm.t7.Text;
-                }
-                else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                {
-                    frm.t7_2.ForeColor = Color.Tomato;
-                    frm.t7.ForeColor = Color.Tomato;
-
-                    frm.usd06.ForeColor = Color.Tomato;
-                    frm.usd07.ForeColor = Color.Tomato;
-
-                    frm.usd06.Text = frm.usd06.Text;
-                    frm.usd07.Text = frm.usd07.Text;
-
-                    frm.t7_2.Text = frm.t7_2.Text;
-                    frm.t7.Text = frm.t7.Text;
-                }
-                else
-                {
-                    frm.usd06.ForeColor = Color.White;
-                    frm.usd07.ForeColor = Color.White;
-
-                    frm.t7_2.ForeColor = Color.White;
-                    frm.t7.ForeColor = Color.White;
-                }
                 return coin_json["data"]["date"].ToString();
             }
         }
@@ -961,14 +814,12 @@ namespace TraySample
 
                 frm.t1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                 frm.t2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                frm.t3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
+                frm.t3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
                 frm.t4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                 frm.t5.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                frm.t7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
-                frm.t7_2.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
-
-                frm.v1.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_1day"].ToString())) + " " + coin_name + " ";
-                frm.v2.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_7day"].ToString())) + " " + coin_name + " ";
+                //frm.t7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["fluctate_24H"].ToString())) + " won";
+                //frm.v1.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_1day"].ToString())) + " " + coin_name + " ";
+                //frm.v2.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_7day"].ToString())) + " " + coin_name + " ";
 
                 using (WebClient wc2 = new WebClient())
                 {
@@ -976,50 +827,15 @@ namespace TraySample
                     JObject jjson = JObject.Parse(json2);
                     frm.usd01.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " $";
                     frm.usd02.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " $";
-                    frm.usd03.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " $";
+                    frm.usd03.Text = String.Format("{0:#,###.##}", ((Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) * Convert.ToDouble(jjson["KRWUSD"][0].ToString())) + " $";
                     frm.usd04.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " $";
                     frm.usd05.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " $";
-                    frm.usd06.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " $";
+                    //frm.usd06.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["fluctate_24H"].ToString())) + " $";
 
                 }
-
-                if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                {
-                    frm.t7_2.ForeColor = Color.Turquoise;
-                    frm.t7.ForeColor = Color.Turquoise;
-
-                    frm.usd06.ForeColor = Color.Turquoise;
-                    frm.usd07.ForeColor = Color.Turquoise;
-                    frm.t7.ForeColor = Color.Turquoise;
-
-                    frm.usd06.Text = "+ " + frm.usd06.Text;
-                    frm.usd07.Text = "+ " + frm.usd07.Text;
-
-                    frm.t7_2.Text = "+ " + frm.t7_2.Text;
-                    frm.t7.Text = "+ " + frm.t7.Text;
-                }
-                else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                {
-                    frm.t7_2.ForeColor = Color.Tomato;
-                    frm.t7.ForeColor = Color.Tomato;
-
-                    frm.usd06.ForeColor = Color.Tomato;
-                    frm.usd07.ForeColor = Color.Tomato;
-
-                    frm.usd06.Text = frm.usd06.Text;
-                    frm.usd07.Text = frm.usd07.Text;
-
-                    frm.t7_2.Text = frm.t7_2.Text;
-                    frm.t7.Text = frm.t7.Text;
-                }
-                else
-                {
-                    frm.usd06.ForeColor = Color.White;
-                    frm.usd07.ForeColor = Color.White;
-
-                    frm.t7_2.ForeColor = Color.White;
-                    frm.t7.ForeColor = Color.White;
-                }
+                //frm.usd07.Text = coin_json["data"]["fluctate_rate_24H"].ToString() + " %";
+                //frm.t7_2.Text= coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
+                
                 return coin_json["data"]["date"].ToString();
             }
         }
@@ -1037,38 +853,28 @@ namespace TraySample
 
                 frm.t1.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " won";
                 frm.t2.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " won";
-                frm.t3.Text = String.Format("{0:#,###.##}", Convert.ToDouble(coin_json["data"]["average_price"].ToString())) + " won";
+                frm.t3.Text = String.Format("{0:#,###.##}", (Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) + " won";
                 frm.t4.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " won";
                 frm.t5.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " won";
-                frm.t7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["24H_fluctate"].ToString())) + " won";
+                //frm.t7.Text = String.Format("{0:#,###}", Convert.ToInt32(coin_json["data"]["fluctate_24H"].ToString())) + " won";
+                //frm.v1.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_1day"].ToString())) + " " + coin_name + " ";
+                //frm.v2.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_7day"].ToString())) + " " + coin_name + " ";
 
-                string json0 = wc.DownloadString("https://earthquake.kr:23490/query/KRWUSD");
-                JObject jjson = JObject.Parse(json);
-                frm.usd01.Text = Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * 1000 + "";
+                using (WebClient wc2 = new WebClient())
+                {
+                    string json2 = wc2.DownloadString("https://earthquake.kr:23490/query/KRWUSD");
+                    JObject jjson = JObject.Parse(json2);
+                    frm.usd01.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["opening_price"].ToString())) + " $";
+                    frm.usd02.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["closing_price"].ToString())) + " $";
+                    frm.usd03.Text = String.Format("{0:#,###.##}", ((Convert.ToDouble(coin_json["data"]["min_price"].ToString()) + Convert.ToDouble(coin_json["data"]["max_price"].ToString())) / 2) * Convert.ToDouble(jjson["KRWUSD"][0].ToString())) + " $";
+                    frm.usd04.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["min_price"].ToString())) + " $";
+                    frm.usd05.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["max_price"].ToString())) + " $";
+                    //frm.usd06.Text = String.Format("{0:#,###.##}", Convert.ToDouble(jjson["KRWUSD"][0].ToString()) * Convert.ToInt32(coin_json["data"]["fluctate_24H"].ToString())) + " $";
 
-                frm.v1.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_1day"].ToString())) + " " + coin_name + " ";
-                frm.v2.Text = String.Format("{0:#,###.####}", Convert.ToDouble(coin_json["data"]["volume_7day"].ToString())) + " " + coin_name + " ";
+                }
+                //frm.usd07.Text = coin_json["data"]["fluctate_rate_24H"].ToString() + " %";
+                //frm.t7_2.Text= coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
 
-                frm.t7_2.Text = coin_json["data"]["24H_fluctate_rate"].ToString() + " %";
-                if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) > 0)
-                {
-                    frm.t7_2.ForeColor = Color.Turquoise;
-                    frm.t7.ForeColor = Color.Turquoise;
-                    frm.t7_2.Text = "+ " + frm.t7_2.Text;
-                    frm.t7.Text = "+ " + frm.t7.Text;
-                }
-                else if (Convert.ToDouble(coin_json["data"]["24H_fluctate_rate"].ToString()) < 0)
-                {
-                    frm.t7_2.ForeColor = Color.Tomato;
-                    frm.t7.ForeColor = Color.Tomato;
-                    frm.t7_2.Text = "- " + frm.t7_2.Text;
-                    frm.t7.Text = "- " + frm.t7.Text;
-                }
-                else
-                {
-                    frm.t7_2.ForeColor = Color.White;
-                    frm.t7.ForeColor = Color.White;
-                }
                 return coin_json["data"]["date"].ToString();
             }
         }
