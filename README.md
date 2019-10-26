@@ -1,5 +1,6 @@
 # X-Monitor
 Cryptocurrency Price Checker
+This is a Windows application that checks the price and amount of cryptocurrency transactions in real time and automatically alerts you when they exceed a certain price or growth rate. We've developed an application that can monitor one or several cryptocurrency transactions in real time.
 
 ### ScreenShots
 
